@@ -63,12 +63,11 @@ public class DrawingPixelByPixel extends JPanel implements ActionListener {
     public static void main(String[] args) throws IOException {
         img = ImageIO.read(new File("/home/agayev169/IdeaProjects/3D Image/20170714_123751867_iOS2.jpg"));
         DrawingPixelByPixel.initCircles();
-        System.out.println("Circles are initialized");
         JFrame jf = new JFrame();
         DrawingPixelByPixel jp = new DrawingPixelByPixel();
         jf.setLayout(new BorderLayout());
         jf.setSize(WIDTH, HEIGHT);
-        jf.setTitle("3D Image");
+        jf.setTitle("Drawing With Particles");
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.setVisible(true);
         jf.add(jp);
