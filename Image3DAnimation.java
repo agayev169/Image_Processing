@@ -9,13 +9,13 @@ import java.io.IOException;
 
 public class Image3DAnimation extends JPanel implements ActionListener {
 
-    public static final int WIDTH = 640;
-    public static final int HEIGHT = 480;
+    private static final int WIDTH = 640;
+    private static final int HEIGHT = 480;
 
-    int xPos;
+    private int xPos;
 
-    static BufferedImage img;
-    Color[][] pixels;
+    private static BufferedImage img;
+    private Color[][] pixels;
     Timer t = new Timer(1, this);
     public static void main(String[] args) throws IOException {
         img = ImageIO.read(new File("/home/agayev169/IdeaProjects/3D Image/20170714_123751867_iOS2.jpg"));
@@ -55,8 +55,6 @@ public class Image3DAnimation extends JPanel implements ActionListener {
             }
         }
     }
-
-    int count = 0;
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
