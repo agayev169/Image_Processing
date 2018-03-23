@@ -25,7 +25,7 @@ public class SortingByBrightness extends JPanel implements ActionListener {
         JFrame jf = new JFrame();
         jf.setLayout(new BorderLayout());
         jf.setSize(WIDTH, HEIGHT);
-        jf.setTitle("Sorting By Brightness");
+        jf.setTitle("3D Image");
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.setVisible(true);
         jf.add(jp);

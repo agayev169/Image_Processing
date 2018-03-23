@@ -9,7 +9,7 @@ import java.util.Random;
 public class HyperSpaceJump extends JPanel implements ActionListener {
 
     static final int WIDTH = 640, HEIGHT = 480;
-    static final float MAX_VEL = 10.0f, MIN_VEL = 2.0f;
+    static final float MAX_VEL = 7.0f, MIN_VEL = 2.0f;
 
     static class Star {
         int x, y;
@@ -53,6 +53,8 @@ public class HyperSpaceJump extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
+        stars.add(new Star());
+        stars.add(new Star());
         stars.add(new Star());
         stars.add(new Star());
         stars.add(new Star());
