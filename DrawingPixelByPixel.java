@@ -13,38 +13,16 @@ public class DrawingPixelByPixel extends JPanel implements ActionListener {
     private static final int HEIGHT = 480;
 
     private static class Circle {
-        private int x, y;
+        private float x, y;
         private float angle;
+        private float radius;
 
         Circle(int x, int y) {
             this.x = x;
             this.y = y;
             Random rand = new Random();
             angle = (float) (rand.nextFloat() * Math.PI * 2);
-        }
-
-        public int getX() {
-            return x;
-        }
-
-        public void setX(int x) {
-            this.x = x;
-        }
-
-        public int getY() {
-            return y;
-        }
-
-        public void setY(int y) {
-            this.y = y;
-        }
-
-        public float getAngle() {
-            return angle;
-        }
-
-        public void setAngle(float angle) {
-            this.angle = angle;
+            radius = 10 + rand.nextFloat() * 5;
         }
     }
 
@@ -58,7 +36,7 @@ public class DrawingPixelByPixel extends JPanel implements ActionListener {
     }
 
     private static BufferedImage img;
-    Timer t = new Timer(1, this);
+    private Timer t = new Timer(1, this);
 
     public static void main(String[] args) throws IOException {
         img = ImageIO.read(new File("/home/agayev169/IdeaProjects/3D Image/20170714_123751867_iOS2.jpg"));
@@ -67,7 +45,7 @@ public class DrawingPixelByPixel extends JPanel implements ActionListener {
         DrawingPixelByPixel jp = new DrawingPixelByPixel();
         jf.setLayout(new BorderLayout());
         jf.setSize(WIDTH, HEIGHT);
-        jf.setTitle("Drawing With Particles");
+        jf.setTitle("3D Image");
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.setVisible(true);
         jf.add(jp);
@@ -75,24 +53,31 @@ public class DrawingPixelByPixel extends JPanel implements ActionListener {
 
     @Override
     protected void paintComponent(Graphics g) {
-        for (int i = 0; i < c.length; i++) {
-            Color temp = new Color(img.getRGB(c[i].x, c[i].y));
+        for (Circle aC : c) {
+            Color temp = new Color(img.getRGB((int) aC.x, (int) aC.y));
             int r = temp.getRed();
             int gr = temp.getGreen();
             int b = temp.getBlue();
             int op = 50;
             g.setColor(new Color(r, gr, b, op));
-            g.fillOval(c[i].x, c[i].y, 15, 15);
+            g.fillOval((int) aC.x, (int) aC.y, (int) aC.radius, (int) aC.radius);
         }
         t.start();
     }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        Random rand = new Random();
         for (Circle aC : c) {
-            aC.x += Math.cos(aC.angle) * 2;
-            aC.y += Math.sin(aC.angle) * 2;
+            Random rand = new Random();
+            int prob = rand.nextInt(1000);
+            aC.angle = (float) (rand.nextFloat() * Math.PI * 2);
+            if (prob == 0) {
+                aC.x += (25 + rand.nextInt(50)) * Math.cos(aC.angle);
+                aC.y += (25 + rand.nextInt(50)) * Math.sin(aC.angle);
+            } else {
+                aC.x += 2 * Math.cos(aC.angle);
+                aC.y += 2 * Math.sin(aC.angle);
+            }
             if (!(aC.x > 25 && aC.x < WIDTH - 25 &&
                     aC.y > 25 && aC.y < HEIGHT - 25)) {
                 if (aC.x < 25) aC.x = WIDTH - 26;
