@@ -1,8 +1,8 @@
-/*переменные : X F
- константы : + − [ ]
- старт  : X
- правила  : (X → F−[[X]+X]+F[+FX]−X), (F → FF)
- угол  : 25°*/
+/*variables : X F
+ constants : + − [ ]
+ axiom  : X
+ rules  : (X → F−[[X]+X]+F[+FX]−X), (F → FF)
+ angle  : 25°*/
 
 String prev;
 String last;
