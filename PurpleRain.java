@@ -23,13 +23,13 @@ public class PurpleRain extends JPanel implements ActionListener {
         }
     }
 
-    static LinkedList<Rain> lines = new LinkedList<>();
+    static LinkedList<Rain> rain = new LinkedList<>();
     Timer t = new Timer(5, this);
 
     public static void main(String[] args) {
         JFrame jf = new JFrame();
         PurpleRain jp = new PurpleRain();
-        lines.add(new Rain());
+        rain.add(new Rain());
         jf.setSize(WIDTH, HEIGHT);
         jf.setLayout(new BorderLayout());
         jf.setTitle("Purple Rain");
@@ -43,25 +43,25 @@ public class PurpleRain extends JPanel implements ActionListener {
         t.start();
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, WIDTH, HEIGHT);
-        for (Rain l : lines) {
-            g.setColor(new Color(200 + (int)(l.vel / MAX_VEL * 55), 0,
-                    200 + (int)(l.vel / MAX_VEL * 55)));
+        for (Rain r : rain) {
+            g.setColor(new Color(200 + (int)(r.vel / MAX_VEL * 55), 0,
+                    200 + (int)(r.vel / MAX_VEL * 55)));
             Graphics2D g2 = (Graphics2D) g;
-            g2.setStroke(new BasicStroke(l.vel / 2));
-            g2.draw(new Line2D.Float(l.x, l.y1, l.x, l.y2));
+            g2.setStroke(new BasicStroke(r.vel / 2));
+            g2.draw(new Line2D.Float(r.x, r.y1, r.x, r.y2));
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        lines.add(new Rain());
-        lines.add(new Rain());
-        for (Rain l : lines) {
-            l.y1 += l.vel;
-            l.y2 += l.vel;
+        rain.add(new Rain());
+        rain.add(new Rain());
+        for (Rain r : rain) {
+            r.y1 += r.vel;
+            r.y2 += r.vel;
         }
-        for (int i = 0; i < lines.size(); i++) {
-            if (lines.get(i).y1 > 500) lines.remove(i);
+        for (int i = 0; i < rain.size(); i++) {
+            if (rain.get(i).y1 > 500) rain.remove(i);
         }
 
         repaint();
